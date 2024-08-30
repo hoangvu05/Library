@@ -1,0 +1,29 @@
+﻿namespace Library.Authorization;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Library.Models;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNet.Identity;
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+public class AdminstratorAuthorizeAttribute : Attribute, IAuthorizationFilter
+{
+    public void OnAuthorization(AuthorizationFilterContext context)
+    {
+        // skip authorization if action is decorated with [AllowAnonymous] attribute
+        var allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
+        if (allowAnonymous)
+            return;
+
+        // authorization
+        var user = (User)context.HttpContext.Items["User"];
+        if (user == null)
+            //context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            context.HttpContext.Response.Redirect("/Login/Authenticate");
+        else if (user.Role == "User") {
+            //context.Result = new JsonResult(new { message = "Unauthorized" });
+            context.HttpContext.Response.Redirect("/Login/Authenticate");
+        }
+    }
+}

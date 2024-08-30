@@ -1,0 +1,351 @@
+﻿@model Library.Models.AllFilter
+
+@{
+    ViewData["Title"] = "Mục lục";
+}
+
+<link rel="stylesheet" href="~/lib/typicons/typicons.css">
+<link rel="stylesheet" href="~/css/vendor.bundle.base.css">
+<!-- endinject -->
+<!-- plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="~/lib/vertical-layout-light/style.css">
+<link rel="stylesheet" href="~/css/glossary.css">
+<link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+
+<body>
+    <div class="container-fluid page-body-wrapper">
+        <partial name="_NavPartial" />
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <form id="searchForm" asp-controller="Search" asp-action="IndexAdmin" method="post">
+                    <container>
+                        <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row">
+                            <div class="navbar-menu-wrapper d-flex align-items-right">
+                                <ul class="navbar-nav mr-lg-5">
+                                    <li class="nav-item ml-0">
+                                        <img src="~/picture/logo.png" height="50" width="85" alt="MDN" />
+                                    </li>
+                                    <li class="nav-item ml-0">
+                                        <div class="input-group">
+                                            <button class="nav-link text-dark" asp-area="" asp-controller="AddBook" asp-action="Index" formmethod="get">
+                                                Thêm sách
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="navbar-nav navbar-nav-right">
+                                    <li class="nav-item ml-30">
+                                        <div class="form-field field-select" style="float:right; font-size:18px;">
+                                            <div class="select">
+                                                <div class="select">
+                                                    <select id="cbSearchOrderform" name="selectSort" onchange="filter()">
+                                                        <option value="hidden" disabled hidden>Sắp xếp theo</option>
+                                                        <option value="titleAscend">Nhan đề tăng dần</option>
+                                                        <option value="titleDescend">Nhan đề giảm dần</option>
+                                                        <option value="authorAscend">Tác giả tăng dần</option>
+                                                        <option value="authorDescend">Tác giả giảm dần</option>
+                                                        <option value="yearAscend">Năm phát hành tăng dần</option>
+                                                        <option value="yearDescend">Năm phát hành giảm dân</option>
+                                                        <option value="default">Mặc định</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item ml-30">
+                                        <div class="form-field field-select" style="float:right; font-size:18px;">
+                                            <div class="select">
+                                                <div class="select">
+                                                    <select id="cbSearchValueform" name="selectOption">
+                                                        <option value="quick">Tìm nhanh</option>
+                                                        <option value="title">Nhan đề</option>
+                                                        <option value="author">Tác giả</option>
+                                                        <option value="genre">Thể loại</option>
+                                                        <option value="isbn">Số ISBN</option>
+                                                        <option value="yearpub">Năm xuất bản</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item nav-search d-none d-md-block mr-0" style="">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="searchbook" id="searchbook" placeholder="Nhập tên sách">
+                                            <button class="filterSubmit" type="submit" asp-route-selectOption="@ViewData["Option"]" asp-route-page="@(Model.PaginatedList.PageIndex)" asp-route-idG="@ViewData["idG"]" asp-route-idA="@ViewData["idA"]" asp-route-idY="@ViewData["idY"]" asp-route-idP="@ViewData["idP"]" asp-route-selectSort="@ViewData["Sort"]">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="search">
+                                                        <i class="typcn typcn-zoom"></i>
+                                                    </span>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+
+
+
+                        <div class="container-fluid page-body-wrapper">
+                            <!-- partial:partials/_sidebar.html -->
+                            <partial name="_OptionFilterPartial" />
+                            <!-- partial -->
+                            <div class="main-panel">
+                                <div class="content-wrapper">
+                                    <div class="row">
+                                        <div class="col-xl-12 grid-margin  flex-column">
+                                            <h5 class="mb-2 text-titlecase mb-4">
+                                                Sách
+                                                @{
+
+                                                    ViewBag.prevDisabled = !Model.PaginatedList.HasPreviousPage ? "disabled" : "";
+                                                    ViewBag.nextDisabled = !Model.PaginatedList.HasNextPage ? "disabled" : "";
+                                                }
+
+
+                                                <button asp-action="IndexAdmin"
+                                                   asp-route-page="@(Model.PaginatedList.PageIndex+1)"
+                                                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                                    asp-route-selectOption="@ViewData["Option"]"
+                                                   asp-route-selectSort="@ViewData["Sort"]"
+                                                   asp-route-idG="@ViewData["idG"]" asp-route-idA="@ViewData["idA"]" asp-route-idY="@ViewData["idY"]" asp-route-idP="@ViewData["idP"]"
+                                                   class="btn-default nextDisabled" style="float:right;">
+                                                    >
+                                                </button>
+
+                                                <span style="white-space: pre; float:right;">   </span>
+
+                                                <button asp-action="IndexAdmin"
+                                                   asp-route-page="@(Model.PaginatedList.PageIndex-1)"
+                                                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                                    asp-route-selectOption="@ViewData["Option"]"
+                                                   asp-route-selectSort="@ViewData["Sort"]"
+                                                   asp-route-idG="@ViewData["idG"]" asp-route-idA="@ViewData["idA"]" asp-route-idY="@ViewData["idY"]" asp-route-idP="@ViewData["idP"]"
+                                                   class="btn-default prevDisabled" style="float:right;">
+                                                    <
+                                                </button>
+                                                <span style="white-space: pre; float:right;">   </span>
+                                                <span style="float:right;">@(1 + (Model.PaginatedList.PageIndex - 1) * ViewBag.pageSize < Model.PaginatedList.NumofBooks ? 1 + (Model.PaginatedList.PageIndex - 1) * ViewBag.pageSize : Model.PaginatedList.NumofBooks) tới @((Model.PaginatedList.PageIndex * ViewBag.pageSize < Model.PaginatedList.NumofBooks ? Model.PaginatedList.PageIndex * ViewBag.pageSize : Model.PaginatedList.NumofBooks)) trong @Model.PaginatedList.NumofBooks kết quả   </span>
+
+                                            </h5>
+                                            @{
+                                                if (Model.PaginatedList != null)
+                                                {
+                                                    foreach (var item in Model.PaginatedList)
+                                                    {
+                                                        <div class="col-md-12 ">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <button class="btn btn-primary btn-sm mr-1" asp-controller="ChangeBook" asp-action="Index" formmethod="get" name="idbook" value="@item.Id">
+                                                                        Chỉnh thông tin
+                                                                    </button>
+
+                                                                    <div class="row align-items-center h-100">
+                                                                        <div class="col-md-4">
+                                                                            <figure class="avatar mx-auto mb-4 mb-md-0">
+                                                                                <img class="avatar" src="data:image/jpeg;base64,@item.Image" alt="MDN" />
+                                                                            </figure>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <h5 class=" text-center text-md-left"><strong>@item.Title</strong></h5>
+                                                                            <p class=" text-center text-md-left">bởi @item.Author</p>
+                                                                            <div class="d-flex align-items-center info pt-3">
+                                                                                <div>
+                                                                                    <p class="font-weight-bold">Thể loại</p>
+                                                                                    <p class="font-weight-bold">Năm và nhà xuất bản</p>
+                                                                                </div>
+                                                                                <span class="space-between" >          </span>
+                                                                                <div>
+                                                                                    <p class="">@item.Genre</p>
+                                                                                    <p class="">@item.ReleaseYear, @item.Publishing</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        @{
+                                                                            if (item.UserId != null && item.Status==true) 
+                                                                            {
+                                                                                <div class="col-md-2 align-items-center">
+                                                                                    <div class="">Người mượn: </div>
+                                                                                    <div class="">
+                                                                                        @{
+                                                                                            var user = await Component.InvokeAsync("User", item.UserId);
+                                                                                        }
+                                                                                        @user
+                                                                            
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                            else if (item.Status == false)
+                                                                            {
+                                                                                <div class="col-md-2 align-items-center">
+                                                                                    <div class="">Đang duyệt: </div>
+                                                                                    <div class="">
+                                                                                        @{
+                                                                                            var user = await Component.InvokeAsync("User", item.UserId);
+                                                                                        }
+                                                                                        @user
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <div class="col-md-2 align-items-center">
+                                                                                    <div class="">Không có người mượn </div>
+                                                                                </div>
+                                                                            }
+                                                                        }
+                                                            
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="~/lib/chart.js/Chart.min.js"></script>
+
+    <script src="~/js/search.js" /></script>
+    <!--===============================================================================================-->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/lib/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/lib/bootstrap/js/popper.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/lib/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/lib/daterangepicker/moment.min.js"></script>
+    <script src="~/lib/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/lib/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/js/login.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function filter() {
+            document.getElementById("searchForm").submit();
+        }
+
+        //var prevDisabled = !Model.PaginatedList.HasPreviousPage ? "true" : "false";
+        //var nextDisabled = !Model.PaginatedList.HasNextPage ? "true" : "false";
+
+        var prevDisabled = '@ViewBag.prevDisabled';
+        var nextDisabled = '@ViewBag.nextDisabled';
+
+        var prev = document.querySelector(".prevDisabled");
+        var next = document.querySelector(".nextDisabled");
+
+        if (prevDisabled == "disabled") prev.setAttribute("disabled", "disabled");
+        if (nextDisabled == "disabled") next.setAttribute("disabled", "disabled");
+
+        var currentOrder = '@ViewBag.Sort';
+        if (currentOrder == "") currentOrder = "hidden";
+        var searchOrder = document.getElementById("cbSearchOrderform").value = currentOrder;
+
+
+        var currentOption = '@ViewBag.Option';
+        if (currentOption == "") currentOption = "quick";
+        var searchOption = document.getElementById("cbSearchValueform").value = currentOption;
+    </script>
+</body>
+
+
+
+@*<table>
+
+    @{
+        if (Model!=null){
+            var i = 0;
+            foreach (var item in Model)
+            {
+                i += 1;
+
+                        @item.Image
+
+                <tr>
+                    <td>
+                        @i: @item.Title
+                    </td>
+
+                    <td>
+                        @item.Genre
+                    </td>
+
+                    <td>
+                        @item.Author
+                    </td>
+
+                    <td>
+                        @item.Publishing, @item.ReleaseYear
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.Description
+                    </td>
+
+                </tr>
+            }
+        }
+        <br>
+    }
+</table>*@
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, CurrentFilter = ViewBag.currentFilter })
+        </th>
+        <th>
+            First Name
+        </th>
+        <th>
+            @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, CurrentFilter = ViewBag.currentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstMidName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+    }
+</table>*@

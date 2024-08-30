@@ -1,0 +1,50 @@
+﻿<!-- partial:partials/_settings-panel.html -->
+<!-- partial -->
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="border-radius:10px;">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="mdi mdi-home-variant"></i>
+                <span style="white-space: pre;">  </span>
+                <span class="menu-title">Trang chủ</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">
+                <i class="mdi mdi-theater"></i>
+                <span style="white-space: pre;">  </span>
+                <span class="menu-title">Giới thiệu</span>
+            </a>
+
+
+        </li>
+        <li class="nav-item">
+            @{
+                var search = await Component.InvokeAsync("Layout", "search");
+            }
+            @search
+        </li>
+        <li class="nav-item">
+            @{
+                var book = await Component.InvokeAsync("Layout", "employee");
+            }
+            @book
+        </li>
+        <li class="nav-item">
+            @{
+
+                var verification = await Component.InvokeAsync("Layout", "verification");
+            }
+            @verification
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Your" asp-action="Index">
+                <i class="mdi mdi-archive"></i>
+                <span style="white-space: pre;">  </span>
+                <span class="menu-title">Sách của bạn</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!-- partial -->

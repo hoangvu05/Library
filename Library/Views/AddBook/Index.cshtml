@@ -1,0 +1,141 @@
+﻿@model Library.Models.AllFilter
+@{
+    ViewData["Title"] = "Thêm sách";
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>PolluxUI Admin</title>
+<!-- base:css -->
+<link rel="stylesheet" href="~/lib/typicons/typicons.css">
+<link rel="stylesheet" href="~/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="~/css/change.css">
+<!-- endinject -->
+<!-- plugin css for this page -->
+<link rel="stylesheet" href="~/lib/select2/select2.min.css">
+<link rel="stylesheet" href="~/lib/select2-bootstrap-theme/select2-bootstrap.min.css">
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="~/lib/vertical-layout-light/style.css">
+
+
+<body>
+    <div class="container-fluid page-body-wrapper">
+        <partial name="_NavPartial" />
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="container-scroller" >
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-body" style="border-radius: 10px !important;">
+                                    <h4 class="card-title">Thêm sách</h4>
+                                    <form class="form-sample" asp-action="Index" asp-controller="AddBook" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Tên sách</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" name="Title" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Thể loại</label>
+                                                    <div class="col-sm-9">
+                                                        <div class="select btn-lg">
+                                                            <select id="cbSearchValueform-quick1" name="Genre" style="width:80%; font-size:20px;">
+                                                                @{
+                                                                    foreach (var item in Model.Genre)
+                                                                    {
+                                                                        <option value="@item.Vietnamese">@item.Vietnamese</option>
+                                                                    }
+                                                                }
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Tác giả</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" name="Author" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Nhà xuất bản</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" name="Publishing"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Năm sản xuất</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" placeholder="yyyy" name="ReleaseYear"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Mã số ISBN</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" name="ISBN"/> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Đăng ảnh</label>
+                                                    <input type="file" name="imgFile" class="file-upload-default">
+                                                    <div class="input-group col-xs-12">
+                                                        <input type="text" name="imgFile" class="form-control file-upload-info" disabled placeholder="Đăng ảnh">
+                                                        <span class="input-group-append">
+                                                            <button class="file-upload-browse btn btn-primary" type="button" >Đăng</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <label class="card-description">
+                                            <strong>Mô tả</strong>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <textarea class="form-control"  name="Description"  rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                              
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mr-2" style="border-radius: 10px !important;">Thêm</button>
+                                        <button class="btn btn-danger" asp-action="IndexAdmin" asp-controller="Search" style="border-radius: 10px !important;">Hủy bỏ</button>
+                            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/vendor.bundle.base.js"></script>
+    <script src="~/js/file-upload.js"></script>
+</body>
+

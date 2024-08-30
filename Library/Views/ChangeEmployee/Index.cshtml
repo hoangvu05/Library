@@ -1,0 +1,136 @@
+﻿@using System.Web.Helpers;
+@model Library.Models.AllFilter;
+@{
+    ViewData["Title"] = "Chỉnh sửa nhân viên";
+}
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>PolluxUI Admin</title>
+<!-- base:css -->
+<link rel="stylesheet" href="~/lib/typicons/typicons.css">
+<link rel="stylesheet" href="~/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="~/css/change.css">
+<!-- endinject -->
+<!-- plugin css for this page -->
+<link rel="stylesheet" href="~/lib/select2/select2.min.css">
+<link rel="stylesheet" href="~/lib/select2-bootstrap-theme/select2-bootstrap.min.css">
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="~/lib/vertical-layout-light/style.css">
+
+
+<body>
+    <div class="container-fluid page-body-wrapper">
+        <partial name="_NavPartial" />
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="container-scroller">
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Chỉnh sửa sách</h4>
+                        <form class="form-sample" asp-action="Index" asp-controller="ChangeEmployee" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="@Model.Employee[0].EmployeeId" name="idEmployee"></input>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Họ</label>
+                                        <div class="col-sm-9">
+                                             <input type="text" class="form-control" name="LastName" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Tên</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="FirstName" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Công việc</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Job"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Lương</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" name="Salary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Đăng ảnh</label>
+                                        <input type="file" name="imgFile" class="file-upload-default">
+                                        <div class="input-group col-xs-12">
+                                            <input type="text" name="textFile" class="form-control file-upload-info" disabled placeholder="Đăng ảnh">
+                                            <span class="input-group-append">
+                                                <button class="file-upload-browse btn btn-primary" type="button">Đăng</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <label class="card-description">
+                                <strong>Đặc điểm</strong>
+                            </label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" name="Description" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Chỉnh</button>
+                            <button class="btn btn-danger" asp-action="Index" asp-controller="Employee">Hủy bỏ</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        <div>
+    </div>
+
+    <script src="~/js/vendor.bundle.base.js"></script>
+    <script src="~/js/file-upload.js"></script>
+    <script>
+        const FirstName = document.querySelector("[name='FirstName']");
+        const LastName = document.querySelector("[name='LastName']");
+        const Job = document.querySelector("[name='Job']");
+        const TextFile = document.querySelector("[name='textFile']");
+        const Salary = document.querySelector("[name='Salary']");
+        const Description = document.querySelector("[name='Description']");
+        
+
+        const employee = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Employee) as String);
+
+        FirstName.value = employee[0].FirstName;
+        LastName.value = employee[0].LastName;
+        TextFile.value = "Bức ảnh hiện tại";
+        Job.value = employee[0].Job;
+        Salary.value = employee[0].Salary;
+        Description.value = employee[0].Description;
+        
+
+
+    </script>
+</body>
+

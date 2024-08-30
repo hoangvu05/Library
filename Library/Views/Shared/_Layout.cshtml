@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Library</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Library.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/typicons/typicons.css">
+    <link rel="stylesheet" href="~/lib/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="~/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/lib/vertical-layout-light/style.css">
+</head>
+
+<body style="border:5px;">
+    <header>
+        <nav class="navbar navbar-menu-wrapper navbar-expand-sm navbar-toggleable-sm bg-white border-bottom box-shadow mb-3 flex-row">
+            <div class="container-fluid navbar-nav">
+                <img src="~/picture/logo.png" height="30" width="50" alt="MDN" />
+                <a id="navbar-brand" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Thư viện Tp. Hồ Chí Minh</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li id="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="mdi mdi-home-variant"></i>
+                                <span style="white-space: pre;">  </span>
+                                <span class="menu-title">Trang chủ</span>
+                            </a>
+                        </li>
+                        <li id="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">
+                                <i class="mdi mdi-theater"></i>
+                                <span style="white-space: pre;">  </span>
+                                <span class="menu-title">Giới thiệu</span>
+                            </a>
+                        </li>
+                        <li id="nav-item">
+                            @{
+                                var search= await Component.InvokeAsync("Layout","search");
+                            }
+                            @search
+                        </li>
+                        <li id="nav-item">
+                            @{
+
+                                var book = await Component.InvokeAsync("Layout", "employee");
+                            }
+                            @book
+                        </li>
+                    </ul>
+                     @*@{
+                        @inject IHttpContextAccessor HttpContextAccessor
+
+                        var role=HttpContextAccessor.HttpContext.Session.GetString("Role");
+                        if (role == "Adminstrator")
+                        {
+                            <div id="nav_item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Add" asp-action="Index" style="text-align: right;">Thêm sách</a>
+                            </div>
+                        }
+                    }*@
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li id="nav-item">
+                            @{
+
+                                var verification = await Component.InvokeAsync("Layout", "verification");
+                            }
+                            @verification
+                        </li>
+                        @*<li id="nav-item">
+                            @{
+
+                                var addbook = await Component.InvokeAsync("Layout", "addbook");
+                            }
+                            @addbook
+                        </li>*@
+                        <li id="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Your" asp-action="Index">
+                                <i class="mdi mdi-archive"></i>
+                                <span style="white-space: pre;">  </span>
+                                <span class="menu-title">Sách của bạn</span>
+                            </a>
+                        </li>
+                        <li id="nav-item" class="btn-group nav-item dropdown" style="font-size: 0.875rem; box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
+                            border: 1px solid #e4e4f4; margin-left: 0.531rem; margin-right: 0.531rem; border-radius:10px; ">
+
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split nav-item" id="dropdownMenuSplitButton1 nav-item" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 0.5rem 1rem;">
+                                @{
+                                    @*@inject IHttpContextAccessor HttpContextAccessor*@
+                                   
+                                    //var username = "Đăng nhập";
+                                    //var refreshToekn = Context.Request.Cookies["refreshToken"];
+
+                                    //var user = LibraryContext.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+
+                                    //var refreshToken = Context.Request.Cookies["refreshToken"];
+
+                                    //var username = Context.Request.Cookies["Username"];
+                                    //if (username == null) username = "Đăng nhập
+                                    var username = await Component.InvokeAsync("Layout", "username");
+                                }
+                                @{
+                                    var iconAdmin = await Component.InvokeAsync("Layout", "iconAdmin");
+                                }
+                                @iconAdmin
+                                <span style="white-space: pre;">  </span>
+                                @username
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="dropdownMenuSplitButton1" style="border-radius:10px;">
+                                <a class="dropdown-item" asp-area="" asp-controller="Login" asp-action="Authenticate">Đăng nhập</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Register" asp-action="Register">Đăng ký</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
+                            </div>
+                         
+                        </li>
+                        <li id="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Your" asp-action="Index" style="text-align: right;"><i class="typcn typcn-bell mx-0"></i></i></a>
+                        </li>
+                        <li id="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Your" asp-action="Index" style="text-align: right;"><i class="typcn typcn-cog-outline mx-0"></i></i></a>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="typcn typcn-th-menu"></span>
+                    </button>
+                   
+                    
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3" >
+            
+            @RenderBody()
+        </main>
+    </div>
+    
+    <center>
+        <footer id="bottom-foot" class="border-top footer text-muted">
+            <div class="bottom-text">
+                &copy; <span class="theyear"></span> - Thư viện Tp. Hồ Chí Minh - <a asp-area="" asp-controller="Home" asp-action="Privacy">Điều khoản</a>
+            </div>
+            <div class="linkage"> </div>
+        </footer>
+    </center>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/vendor.bundle.base.js"></script>
+    <script src="~/js/off-canvas.js"></script>
+    <script src="@Url.Content("~/js/layout.js")"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

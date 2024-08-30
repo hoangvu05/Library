@@ -1,0 +1,120 @@
+﻿@model Library.Models.AllFilter;
+
+<nav class="sidebar" id="sidebar">
+    <ul class="nav unstyled">
+        <li class="nav-item active">
+            <a class="nav-link">
+                <i class="typcn typcn-book menu-icon" style="font-size:18px;"></i>
+                <strong><span class="menu-title" style="font-size:18px;">Chọn theo mục</span></strong>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#genre" aria-expanded="false" aria-controls="genre">
+                <span class="menu-title">Thể loại</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="genre">
+                <ul class="unstyled">
+                    @{
+                        var idG = ViewBag.idG;
+                        var j1 = 0;
+                        for (var i = 0; i < Model.Genre.Count; i++)
+                        {
+                            var check = "";
+                            if (idG != null) if (j1 < idG.Length) if (idG[j1] == Model.Genre[i].GenreId) { check = "checked"; j1++; }
+                            <li class="nav-item">
+                                <span>
+                                    <input class="form-check-input" name="idG" type="checkbox" value="@(Model.Genre[i].GenreId)" id="@Model.Genre[i].GenreId" onchange="return filter();" @check>
+                                    <label for="@Model.Genre[i].GenreId">@Model.Genre[i].Vietnamese</label>
+                                    <input type="hidden" asp-for="@Model.Genre[i].GenreId" />
+                                    <input type="hidden" asp-for="@Model.Genre[i].Vietnamese" />
+                                </span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#author" aria-expanded="false" aria-controls="author">
+                <span class="menu-title">Tác giả</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="author">
+                <ul class="unstyled">
+                    @{
+                        var idA = ViewBag.idA;
+                        var j2 = 0;
+                        for (var i = 0; i < Model.Author.Count; i++)
+                        {
+                            var check = "";
+                            if (idA != null) if (j2 < idA.Length) if (idA[j2] == Model.Author[i].AuthorId) { check = "checked"; j2++; }
+                            <li class="nav-item">
+                                <span>
+                                    <input class="form-check-input" name="idA" type="checkbox" value="@(Model.Author[i].AuthorId)" id="@Model.Author[i].AuthorId" onchange="return filter();" @check>
+                                    <label for="@Model.Author[i].AuthorId">@Model.Author[i].Authors</label>
+                                    <input type="hidden" asp-for="@Model.Author[i].AuthorId" />
+                                    <input type="hidden" asp-for="@Model.Author[i].Authors" />
+                                </span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#year" aria-expanded="false" aria-controls="year">
+                <span class="menu-title">Năm</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="year">
+                <ul class="unstyled">
+                    @{
+                        var idY = ViewBag.idY;
+                        var j3 = 0;
+                        for (var i = 0; i < Model.Year.Count; i++)
+                        {
+                            var check = "";
+                            if (idY != null) if (j3 < idY.Length) if (idY[j3] == Model.Year[i].YearId) { check = "checked"; j3++; }
+                            <li class="nav-item">
+                                <span>
+                                    <input class="form-check-input" name="idY" type="checkbox" value="@(Model.Year[i].YearId)" id="@Model.Year[i].YearId" onchange="return filter();" @check>
+                                    <label for="@Model.Year[i].YearId">@Model.Year[i].Years</label>
+                                    <input type="hidden" asp-for="@Model.Year[i].YearId" />
+                                    <input type="hidden" asp-for="@Model.Year[i].Years" />
+                                </span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#publisher" aria-expanded="false" aria-controls="publisher">
+                <span class="menu-title">Nhà xuất bản</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="publisher">
+                <ul class="unstyled">
+                    @{
+                        var idP = ViewBag.idP;
+                        var j4 = 0;
+                        for (var i = 0; i < Model.Publisher.Count; i++)
+                        {
+                            var check = "";
+                            if (idP != null) if (j4 < idP.Length) if (idP[j4] == Model.Publisher[i].PublisherId) { check = "checked"; j4++; }
+                            <li class="nav-item">
+                                <span>
+                                    <input class="form-check-input" name="idP" type="checkbox" value="@(Model.Publisher[i].PublisherId)" id="@Model.Publisher[i].PublisherId" onchange="return filter();" @check>
+                                    <label for="@Model.Publisher[i].PublisherId">@Model.Publisher[i].Publishers</label>
+                                    <input type="hidden" asp-for="@Model.Publisher[i].PublisherId" />
+                                    <input type="hidden" asp-for="@Model.Publisher[i].Publishers" />
+                                </span>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>
