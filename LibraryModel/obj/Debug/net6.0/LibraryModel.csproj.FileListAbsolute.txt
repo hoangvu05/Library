@@ -1,0 +1,12 @@
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.AssemblyInfoInputs.cache
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.AssemblyInfo.cs
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.csproj.CoreCompileInputs.cache
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\bin\Debug\net6.0\LibraryModel.deps.json
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\bin\Debug\net6.0\LibraryModel.dll
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\bin\Debug\net6.0\LibraryModel.pdb
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.csproj.AssemblyReference.cache
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.dll
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\refint\LibraryModel.dll
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\LibraryModel.pdb
+C:\D\Computer Science\VisualStudio files\Library\LibraryModel\obj\Debug\net6.0\ref\LibraryModel.dll
