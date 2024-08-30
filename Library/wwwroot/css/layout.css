@@ -1,0 +1,56 @@
+﻿#nav-item a:hover {
+    background-color: lightgrey;
+}
+
+#nav-item a {
+    border-radius:10px;
+}
+
+#navbar-brand{
+    color: red;
+}
+
+#bottom-foot {
+    line-height: 1.5;
+}
+
+.pic-description {
+    text-align: center;
+}
+
+#about{
+    font-size:20px;
+}
+
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.navbar-expand-sm .nav-link {
+    box-shadow: 0 5px 10px 0 rgba(230, 230, 243, 0.88);
+    border: 1px solid #e4e4f4;
+    margin-left: 0.531rem;
+    margin-right: 0.531rem;
+}
+
+
+.container{
+    max-width:100% !important;
+}
+
+.btn:hover {
+    background-color: lightgrey;
+}
+
+.page-body-wrapper {
+    border-radius: 10px;
+}
+

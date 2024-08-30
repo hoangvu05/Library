@@ -1,0 +1,250 @@
+﻿@import "bourbon";
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
+
+body {
+    font-family: "Lato";
+    font-size: 100%;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: #fefefe;
+    overflow-x: visible;
+}
+
+
+.app {
+    height: 100vh;
+}
+/* -------------
+Sidebar
+----------------*/
+/*.sidebar {
+    width: 40.3333%;
+    width: 20em;
+    top: 0;
+    overflow: hidden;
+    background-color: #19222a;
+    -webkit-transform: translateZ(0);
+    visibility: visible;
+    -webkit-backface-visibility: hidden;
+    padding: 20px;
+    header
+
+{
+    background-color: #09f;
+    width: 100%;
+    display: block;
+    padding: 0.75em 1em;
+}
+
+}*/
+
+/* -------------
+Sidebar Nav
+----------------*/
+/*.sidebar-nav {
+    width: 13em;
+    background-color: #19222a;
+    height: 100%;
+    font-weight: 400;
+    font-size: 1.2em;
+    overflow: auto;
+    padding-bottom: 6em;
+    z-index: 9;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    ul*/
+ 
+
+/*{
+    list-style: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    li
+
+{
+    margin-left: 0;
+    padding-left: 0;
+    min-width: 13em;
+    display: inline-block;
+    width: 100%;
+    a*/
+
+/*{
+    color: rgba(255,255,255,0.9);
+    font-size: 0.75em;
+    padding: 1.05em 1em;
+    position: relative;
+    display: block;
+    &:hover
+
+{
+    background-color: rgba(0,0,0,0.9);
+}
+
+}*/
+/* -------------
+Sidebar: icons
+----------------*/
+
+/* -------------
+Chev elements
+----------------*/
+& > ul > li > a:after {
+    content: '\f125';
+    font-family: ionicons;
+    font-size: 0.5em;
+    width: 10px;
+    color: #fff;
+    position: absolute;
+    right: 0.75em;
+    top: 45%;
+}
+/* -------------
+Nav-Flyout
+----------------*/
+
+/* -------------
+Hover
+----------------*/
+& ul > li:hover {
+    .nav-flyout
+
+{
+}
+
+}
+}
+.classifier{
+    color: white;
+}
+
+.clickable {
+    text-decoration: none;
+
+}
+
+.field {
+    
+}
+
+.arrow {
+
+    float:right;
+}
+
+
+section.main{
+    display:flex;
+}
+
+article{
+    flex:3;
+}
+
+li {
+    list-style: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+section a {
+    margin-left: 0;
+    padding-left: 0;
+    min-width: 13em;
+    display: inline-block;
+    width: 100%;
+}
+
+.bookSearch {
+    border: solid;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar-breadcrumb {
+    background: #00c8bf;
+    margin-top: 0rem;
+    border-radius:10px;
+}
+
+.navbar-breadcrumb .navbar-menu-wrapper {
+        width: 100%;
+        border-radius: 10px;
+}
+
+.navbar-nav {
+    border-radius: 10px;
+}
+
+.nav-item {
+    border-radius: 10px;
+}
+
+.select {
+    border-radius: 10px;
+}
+
+.sub_menu {
+    list-style-type: none;
+}
+#cbSearchOrderform {
+    border-radius: 10px;
+}
+#cbSearchValueform {
+    border-radius: 10px;
+}
+
+.input-group {
+    border-radius: 10px !important;
+}
+
+.input-group-prepend {
+    border-radius: 10px !important;
+}
+
+.filterSubmit {
+    border-radius: 10px !important;
+}
+
+.sidebar {
+    border-radius: 10px !important;
+}
+
+.nav {
+    border-radius: 10px !important;
+}
+
+.nav-link {
+    border-radius: 10px !important;
+}
+
+.nav-item {
+    border-radius: 10px !important;
+}
+.btn-default {
+    border-radius: 10px !important;
+}
+
+.avatar {
+    border-radius: 10px !important;
+}
+
+.card {
+    border-radius: 10px !important;
+}

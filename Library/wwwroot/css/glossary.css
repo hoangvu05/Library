@@ -1,0 +1,17 @@
+﻿.btn-sm.mr-1 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 10px;
+}
+
+
+.space-between {
+    white-space: pre; 
+    float:right;
+}
+
+.avatar {
+    max-height: 100%;
+    max-width: 100%;
+}
